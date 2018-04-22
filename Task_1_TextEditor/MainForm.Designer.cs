@@ -248,6 +248,7 @@
             this.toolStripButtonOpen.Name = "toolStripButtonOpen";
             this.toolStripButtonOpen.Size = new System.Drawing.Size(73, 22);
             this.toolStripButtonOpen.Text = "Открыть";
+            this.toolStripButtonOpen.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripButtonSave
             // 
