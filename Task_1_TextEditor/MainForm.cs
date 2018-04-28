@@ -20,7 +20,12 @@ namespace Task_1_TextEditor
 
         private DialogResult dialogResult;
 
-        private string tempStr;
+        private string bufferStr;
+        private string bufferTextBoxText;
+
+        private Font defaultFont;
+        private Color defaultForeColor;
+        private Color defaultBackColor;
 
         public MainForm()
         {
@@ -31,20 +36,23 @@ namespace Task_1_TextEditor
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            this.defaultFont = this.textBoxTextFromFile.Font;
+            this.defaultForeColor = this.textBoxTextFromFile.ForeColor;
+            this.defaultBackColor = this.textBoxTextFromFile.BackColor;
         }
+
+        private void TextBoxTextFromFile_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            this.bufferTextBoxText = this.textBoxTextFromFile.Text;
+        }
+        private void textBoxTextFromFile_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.bufferTextBoxText = this.textBoxTextFromFile.Text;
+        }
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO если открыт документ не сохраненный
-            // то спросить "сохранить ли документ перед выходом".
-            //if (this.Text[0] == '*')
-            //{
-            //    MessageBox.Show("Сохранить изменения в файле "
-            //        + this.openFilePath + "?", "Сохранить файл",
-            //        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            //}
-
             this.dialogResult = this.AskWhetherToSaveTheChanges();
 
             if (dialogResult == DialogResult.Yes)
@@ -75,29 +83,6 @@ namespace Task_1_TextEditor
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Если открыт документ не сохраненный
-            // то спросить "сохранить ли документ перед открытием другого".
-            //if (this.Text[0] == '*')
-            //{
-            //    //DialogResult dialogResult;
-
-            //    dialogResult = MessageBox.Show("Сохранить изменения в файле "
-            //        + this.openFilePath + "?", "Сохранить файл",
-            //        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-            //    if (dialogResult == DialogResult.Yes)
-            //    {
-            //        this.saveToolStripMenuItem_Click(sender, e);
-
-            //        this.CreateNewFile();
-            //    }
-            //    else if (dialogResult == DialogResult.No)
-            //    {
-            //        this.CreateNewFile();
-            //    }
-
-            //}
-
             this.dialogResult = this.AskWhetherToSaveTheChanges();
 
             if (dialogResult == DialogResult.Yes)
@@ -174,7 +159,10 @@ namespace Task_1_TextEditor
                     writer.Write(this.textBoxTextFromFile.Text);
                 }
 
-                this.Text = this.Text.Substring(1);
+                if (this.Text[0] == '*')
+                {
+                    this.Text = this.Text.Substring(1);
+                }
             }
         }
 
@@ -222,25 +210,79 @@ namespace Task_1_TextEditor
         {
             if (this.textBoxTextFromFile.SelectedText != "")
             {
-                //MessageBox.Show(this.textBoxTextFromFile.SelectedText);
-                this.tempStr = this.textBoxTextFromFile.SelectedText;
+                this.bufferStr = this.textBoxTextFromFile.SelectedText;
                 this.textBoxTextFromFile.SelectedText = "";
             }
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.tempStr != "")
+            if (this.bufferStr != "")
             {
-                //this.textBoxTextFromFile.Text.Insert(
-                //    this.textBoxTextFromFile., this.tempStr);
-                this.textBoxTextFromFile.SelectedText = this.tempStr;
+                this.textBoxTextFromFile.SelectedText = this.bufferStr;
             }
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.tempStr = this.textBoxTextFromFile.SelectedText;
+            this.bufferStr = this.textBoxTextFromFile.SelectedText;
         }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.textBoxTextFromFile.Text = this.bufferTextBoxText;
+        }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FontDialog font = new FontDialog())
+            {
+                if (font.ShowDialog() == DialogResult.OK)
+                {
+                    // TODO проверка на семейство шрифта (формат)
+                    // при смене шрифта ошибка 
+                    // "поддерживаются только шрифты TrueType".
+
+                    this.textBoxTextFromFile.Font = font.Font;
+                }
+
+                this.textBoxTextFromFile.DeselectAll();
+            }
+        }
+
+        private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.textBoxTextFromFile.Font = this.defaultFont;
+            this.textBoxTextFromFile.ForeColor = this.defaultForeColor;
+            this.textBoxTextFromFile.BackColor = this.defaultBackColor;
+        }
+
+        private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog backColor = new ColorDialog())
+            {
+                if (backColor.ShowDialog() == DialogResult.OK)
+                {
+                    this.textBoxTextFromFile.BackColor = backColor.Color;
+                }
+
+                this.textBoxTextFromFile.DeselectAll();
+            }
+        }
+
+        private void fontColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog foreColor = new ColorDialog())
+            {
+                if (foreColor.ShowDialog() == DialogResult.OK)
+                {
+                    this.textBoxTextFromFile.ForeColor = foreColor.Color;
+                }
+
+                this.textBoxTextFromFile.DeselectAll();
+            }
+        }
+
+        
     }
 }
