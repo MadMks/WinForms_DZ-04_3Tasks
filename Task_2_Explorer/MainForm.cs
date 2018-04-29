@@ -64,7 +64,8 @@ namespace Task_2_Explorer
 
                 foreach (string item in Directory.EnumerateFileSystemEntries(this.currentPath))
                 {
-                    this.listBoxFolderContents.Items.Add(item);
+                    //this.listBoxFolderContents.Items.Add(item);
+                    this.listBoxFolderContents.Items.Add(Path.GetFileName(item));
                 }
 
 
