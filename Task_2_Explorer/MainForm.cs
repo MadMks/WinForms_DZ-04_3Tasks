@@ -29,8 +29,7 @@ namespace Task_2_Explorer
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.AddNamesOfAvailableDrives();
-
-            //this.textBoxAdressLine.Text = Directory.GetDirectoryRoot("/");
+            
             this.textBoxAdressLine.Text = "";
         }
 
@@ -43,9 +42,6 @@ namespace Task_2_Explorer
                     this.listBoxOfDisks.Items.Add(item);
                 }
             }
-
-            // Запомним текущую позицию.
-            //this.jumpList.Add("\\");
         }
 
         private void listBoxOfDisks_DoubleClick(object sender, EventArgs e)
@@ -64,39 +60,16 @@ namespace Task_2_Explorer
 
                 foreach (string item in Directory.EnumerateFileSystemEntries(this.currentPath))
                 {
-                    //this.listBoxFolderContents.Items.Add(item);
                     this.listBoxFolderContents.Items.Add(Path.GetFileName(item));
                 }
 
-
-                if (this.IsTheretheFollowingEntry() == true)
-                {
-                    this.DeleteTheFollowUpEntryes();
-                }
                 // Запомним текущую позицию.
                 this.jumpList.Add(this.currentPath);
             }
+
         }
 
-        private void DeleteTheFollowUpEntryes()
-        {
-            this.jumpList.RemoveRange((this.jumpList.IndexOf(this.currentPath) + 1), this.jumpList.Count);
-        }
 
-        //private void DeleteTheFollowingEntry()
-        //{
-        //    this.jumpList.RemoveAt(this.jumpList.IndexOf(this.currentPath) + 1);
-        //}
-
-        private bool IsTheretheFollowingEntry()
-        {
-            if ((this.jumpList.IndexOf(this.currentPath) + 1) > 0)
-            {
-                return true;
-            }
-
-            return false;
-        }
 
         private void textBoxAdressLine_TextChanged(object sender, EventArgs e)
         {
@@ -105,7 +78,6 @@ namespace Task_2_Explorer
 
         private void BackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (this.textBoxAdressLine.Text != "")
             {
                 foreach (string item in Directory.GetLogicalDrives())
@@ -116,21 +88,19 @@ namespace Task_2_Explorer
 
                         this.listBoxOfDisks.Items.Clear();
                         this.listBoxFolderContents.Items.Clear();
-
-                        //this.jumpList.Clear();
+                        
+                        this.jumpList.Clear();
 
                         AddNamesOfAvailableDrives();
                         return;
                     }
                 }
-
+                
 
                 this.textBoxAdressLine.Text = this.jumpList[this.jumpList.IndexOf(this.currentPath) - 1];
 
-                this.GoToFolder();
-            }
-
-            
+                this.GoToFolder();        
+            }  
         }
 
 
@@ -154,7 +124,24 @@ namespace Task_2_Explorer
             }
         }
 
+        private void toRootDirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.textBoxAdressLine.Text = "";
 
+            this.listBoxOfDisks.Items.Clear();
+            this.listBoxFolderContents.Items.Clear();
 
+            this.jumpList.Clear();
+
+            AddNamesOfAvailableDrives();
+        }
+
+        private void textBoxAdressLine_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Directory.Exists(this.currentPath) == true)
+            {
+                this.GoToFolder();
+            }
+        }
     }
 }
