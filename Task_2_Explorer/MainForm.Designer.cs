@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.listBoxOfDisks = new System.Windows.Forms.ListBox();
             this.listBoxFolderContents = new System.Windows.Forms.ListBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BackMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,24 +42,9 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonBack = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonForward = new System.Windows.Forms.ToolStripButton();
-            this.contextMenuListBoxOfDisks = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.backToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.forwardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.переименоватьToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
-            this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuListBoxFolderContents = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.createFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxAdressLine = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
-            this.contextMenuListBoxOfDisks.SuspendLayout();
-            this.contextMenuListBoxFolderContents.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxOfDisks
@@ -97,6 +82,12 @@
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.menuToolStripMenuItem.Text = "Меню";
+            // 
+            // exitMenuItem
+            // 
+            this.exitMenuItem.Name = "exitMenuItem";
+            this.exitMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exitMenuItem.Text = "Выход";
             // 
             // navToolStripMenuItem
             // 
@@ -166,91 +157,6 @@
             this.toolStripButtonForward.Text = "Вперед";
             this.toolStripButtonForward.Click += new System.EventHandler(this.forwardToolStripMenuItem_Click);
             // 
-            // contextMenuListBoxOfDisks
-            // 
-            this.contextMenuListBoxOfDisks.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.backToolStripMenuItem1,
-            this.forwardToolStripMenuItem1,
-            this.переименоватьToolStripMenuItem,
-            this.openFolderToolStripMenuItem});
-            this.contextMenuListBoxOfDisks.Name = "contextMenuStrip1";
-            this.contextMenuListBoxOfDisks.Size = new System.Drawing.Size(154, 76);
-            // 
-            // backToolStripMenuItem1
-            // 
-            this.backToolStripMenuItem1.Name = "backToolStripMenuItem1";
-            this.backToolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
-            this.backToolStripMenuItem1.Text = "Назад";
-            // 
-            // forwardToolStripMenuItem1
-            // 
-            this.forwardToolStripMenuItem1.Name = "forwardToolStripMenuItem1";
-            this.forwardToolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
-            this.forwardToolStripMenuItem1.Text = "Вперед";
-            // 
-            // переименоватьToolStripMenuItem
-            // 
-            this.переименоватьToolStripMenuItem.Name = "переименоватьToolStripMenuItem";
-            this.переименоватьToolStripMenuItem.Size = new System.Drawing.Size(150, 6);
-            // 
-            // openFolderToolStripMenuItem
-            // 
-            this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.openFolderToolStripMenuItem.Text = "Открыть папку";
-            // 
-            // contextMenuListBoxFolderContents
-            // 
-            this.contextMenuListBoxFolderContents.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createFileToolStripMenuItem,
-            this.createFolderToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.renameToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.toolStripMenuItem3});
-            this.contextMenuListBoxFolderContents.Name = "contextMenuStrip2";
-            this.contextMenuListBoxFolderContents.Size = new System.Drawing.Size(154, 104);
-            // 
-            // createFileToolStripMenuItem
-            // 
-            this.createFileToolStripMenuItem.Name = "createFileToolStripMenuItem";
-            this.createFileToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.createFileToolStripMenuItem.Text = "Создать файл";
-            // 
-            // createFolderToolStripMenuItem
-            // 
-            this.createFolderToolStripMenuItem.Name = "createFolderToolStripMenuItem";
-            this.createFolderToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.createFolderToolStripMenuItem.Text = "Создать папку";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(150, 6);
-            // 
-            // renameToolStripMenuItem
-            // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.renameToolStripMenuItem.Text = "Переименовать";
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.deleteToolStripMenuItem.Text = "Удалить";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(150, 6);
-            // 
-            // exitMenuItem
-            // 
-            this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitMenuItem.Text = "Выход";
-            // 
             // textBoxAdressLine
             // 
             this.textBoxAdressLine.Location = new System.Drawing.Point(12, 52);
@@ -279,8 +185,6 @@
             this.menuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            this.contextMenuListBoxOfDisks.ResumeLayout(false);
-            this.contextMenuListBoxFolderContents.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,18 +204,6 @@
         private System.Windows.Forms.ToolStripMenuItem toRootDirMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonBack;
         private System.Windows.Forms.ToolStripButton toolStripButtonForward;
-        private System.Windows.Forms.ContextMenuStrip contextMenuListBoxOfDisks;
-        private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem forwardToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator переименоватьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openFolderToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuListBoxFolderContents;
-        private System.Windows.Forms.ToolStripMenuItem createFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createFolderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.TextBox textBoxAdressLine;
     }
